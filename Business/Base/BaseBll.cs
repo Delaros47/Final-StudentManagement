@@ -1,5 +1,8 @@
 ﻿using Business.Base.Interfaces;
 using Business.Functions;
+using Common.Enums;
+using Common.Functions;
+using Common.Message;
 using DataAccess.Interfaces;
 using Model.Entities.Base;
 using System;
@@ -92,7 +95,8 @@ namespace Business.Base
 
         #region Comment
         /*
-         * Here in BaseUpdate we will send to entities one is old other is current and surely we will not be updating all of them only changed fields we will compare to each other in GeneralFunctions class so we will be updating only 
+         * Here in BaseUpdate we will send to entities one is old other is current and surely we will not be updating all of them only changed fields we will compare to each other in GeneralFunctions class so we will be updating only changed fields
+         * if in changed fields if we have no values then we return true 
          */
         #endregion
 
@@ -107,55 +111,35 @@ namespace Business.Base
             return _uow.Save();
         }
 
+        #region Comment
+        /*
+         * Here BaseDelete it will simple delete our entity and give message what has deleted as for message in common layer we have created FormType enums we will define all our Forms whenever we want to delete any of them automaticlly will be giving us message what we have deleted it
+         * giveMessage means that sometimes we will not be giving our message maybe another approvement so as default we put true but when we don't want to use it that we will set it to false
+         * If giveMessage is true then we get our FormType attribute description then it send to DeleteMessage and shows us dialog
+         */
+        #endregion
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        private bool _disposedValue;
-        protected virtual void Dispose(bool disposing)
+        protected bool BaseDelete(BaseEntity entity,FormType formType,bool giveMessage=true)
         {
-            if (!_disposedValue)
-            {
-                if (disposing)
-                {
+            GeneralFunctions.CreateUnitOfWork<T, TContext>(ref _uow);
+            if (giveMessage)
+                if (Messages.DeleteMessage(formType.ToName()) != DialogResult.Yes) return false;
+            _uow.Rep.Delete(entity.EntityConvert<T>());
+           return _uow.Save();
 
-                }
-                _disposedValue = true;
-            }
         }
+
+        #region Comment
+        /*
+         * Here will dispose our _ctrl and _uow will not dispose our Bll if we do that it will give error in runtime
+         * Here _ctrl?.Dispose(); if _ctrl is not null then Dispose it
+         */
+        #endregion
 
         public void Dispose()
         {
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
+            _ctrl?.Dispose();
+            _uow?.Dispose();
         }
     }
 }

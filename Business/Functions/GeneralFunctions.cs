@@ -27,7 +27,7 @@ namespace Business.Functions
                 #region Comment
                 /*
                  * Here later we will be using on our Entities ICollection<> generic interface in order to reach each other Entities so if our value is ICollection then it will continue cause it is not our Entity field that's why we put a condition like that here
-                 * oldValue we get the value if it is null then we convert into string.Empty because since we cannot compare Null values with each other this ?? checks if our value is null then it assigns Empty value there
+                 * oldValue we get the value if it is null then we convert into string.Empty because since we cannot compare Null values with each other this ?? checks if our value is null then it assigns Empty value there (?? it checks if it is null if it null first value it will be our assign) 
                  *  If our values are byte[] means that it is a image of picture so we have to check and assign its value if it is empty of null so we will put 0 in order not to be null then we will compare to each other if they are not equal that then it is a new image or picture has been added to our database then we will save it as its Name in our fields IList<string> 
                  */
                 #endregion

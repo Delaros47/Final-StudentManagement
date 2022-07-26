@@ -14,6 +14,7 @@ namespace Business.Functions
          * This is our Entity convert function it will convert DTO to entities first it will get their properties if they have the same name then it will assign the values on them
          */
         #endregion
+
         public static TTarget EntityConvert<TTarget>(this IBaseEntity source)
         {
             #region Comment

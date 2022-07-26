@@ -1,6 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Controls;
-using StudentManagementUI.Abstract;
+using StudentManagementUI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

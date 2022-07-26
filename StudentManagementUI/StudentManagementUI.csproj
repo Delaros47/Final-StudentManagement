@@ -55,8 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IStatusBarDescription.cs" />
-    <Compile Include="Abstract\IStatusBarShortcut.cs" />
     <Compile Include="Forms\BaseForms\BaseEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +79,8 @@
     <Compile Include="Forms\SchoolForms\SchoolListForm.Designer.cs">
       <DependentUpon>SchoolListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IStatusBarDescription.cs" />
+    <Compile Include="Interfaces\IStatusBarShortcut.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControls\Controls\MyButtonEdit.cs">

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace StudentManagementUI.Abstract
+namespace StudentManagementUI.Interfaces
 {
     public interface IStatusBarDescription
     {

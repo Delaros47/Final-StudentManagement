@@ -7,7 +7,7 @@ using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Registrator;
 using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraGrid.Views.Grid;
-using StudentManagementUI.Abstract;
+using StudentManagementUI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
