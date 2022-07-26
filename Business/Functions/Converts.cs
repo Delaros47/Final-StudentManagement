@@ -25,6 +25,7 @@ namespace Business.Functions
              *  
              */
             #endregion
+
             if (source == null) return default(TTarget);
             var destination = Activator.CreateInstance<TTarget>();
             var sourceProp = source.GetType().GetProperties();

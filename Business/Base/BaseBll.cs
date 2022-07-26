@@ -49,7 +49,7 @@ namespace Business.Base
          */
         #endregion
 
-        protected TResult BaseSingle<TResult>(Expression<Func<T,bool>> filter,Expression<Func<T,TResult>> selector)
+        protected TResult BaseSingle<TResult>(Expression<Func<T, bool>> filter, Expression<Func<T, TResult>> selector)
         {
             #region Comment
             /*
@@ -58,7 +58,7 @@ namespace Business.Base
             #endregion
 
             GeneralFunctions.CreateUnitOfWork<T, TContext>(ref _uow);
-            return _uow.Rep.Find(filter,selector);
+            return _uow.Rep.Find(filter, selector);
         }
 
         #region Comment
@@ -67,11 +67,11 @@ namespace Business.Base
          */
         #endregion
 
-        protected IQueryable<TResult> BaseList<TResult>(Expression<Func<T,bool>> filter,Expression<Func<T,TResult>> selector)
+        protected IQueryable<TResult> BaseList<TResult>(Expression<Func<T, bool>> filter, Expression<Func<T, TResult>> selector)
         {
 
             GeneralFunctions.CreateUnitOfWork<T, TContext>(ref _uow);
-            return _uow.Rep.Select(filter,selector);
+            return _uow.Rep.Select(filter, selector);
 
         }
 
@@ -82,7 +82,7 @@ namespace Business.Base
          */
         #endregion
 
-        protected bool BaseInsert(BaseEntity entity,Expression<Func<T,bool>> filter)
+        protected bool BaseInsert(BaseEntity entity, Expression<Func<T, bool>> filter)
         {
             GeneralFunctions.CreateUnitOfWork<T, TContext>(ref _uow);
             //Validation will be here later
@@ -90,13 +90,21 @@ namespace Business.Base
             return _uow.Save();
         }
 
+        #region Comment
+        /*
+         * Here in BaseUpdate we will send to entities one is old other is current and surely we will not be updating all of them only changed fields we will compare to each other in GeneralFunctions class so we will be updating only 
+         */
+        #endregion
 
-        protected bool BaseUpdate(BaseEntity oldEntity,BaseEntity currentEntity,Expression<Func<T,bool>> filter)
+        protected bool BaseUpdate(BaseEntity oldEntity, BaseEntity currentEntity, Expression<Func<T, bool>> filter)
         {
 
             GeneralFunctions.CreateUnitOfWork<T, TContext>(ref _uow);
             //Validation will be here later
-
+            var changedFields = oldEntity.GetChangedFields(currentEntity);
+            if (changedFields.Count == 0) return true;
+            _uow.Rep.Update(currentEntity.EntityConvert<T>(), changedFields);
+            return _uow.Save();
         }
 
 

@@ -5,19 +5,65 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Business.Functions
 {
     public static class GeneralFunctions
     {
+        #region Comment
+        /*
+         * Here we will get oldEntity and currentEntity and we will be comparing them to each other if any fields are changed that then we will be getting them from here 
+         * Here fields is IList<string> we will save changed fields inside it
+         * then from foreach we will be getting Properties from currentEntity
+         */
+        #endregion
 
-        public static IList<string> GetChangedFields<T>(this T oldEntity,T currentEntity)
+        public static IList<string> GetChangedFields<T>(this T oldEntity, T currentEntity)
         {
             IList<string> fields = new List<string>();
+            foreach (var prop in currentEntity.GetType().GetProperties())
+            {
+                #region Comment
+                /*
+                 * Here later we will be using on our Entities ICollection<> generic interface in order to reach each other Entities so if our value is ICollection then it will continue cause it is not our Entity field that's why we put a condition like that here
+                 * oldValue we get the value if it is null then we convert into string.Empty because since we cannot compare Null values with each other this ?? checks if our value is null then it assigns Empty value there
+                 *  If our values are byte[] means that it is a image of picture so we have to check and assign its value if it is empty of null so we will put 0 in order not to be null then we will compare to each other if they are not equal that then it is a new image or picture has been added to our database then we will save it as its Name in our fields IList<string> 
+                 */
+                #endregion
 
+                if (prop.PropertyType.Namespace == "System.Collections.Generic") continue;
+                var oldValue = prop.GetValue(oldEntity) ?? string.Empty;
+                var currentValue = prop.GetValue(currentEntity) ?? string.Empty;
+
+                if (prop.PropertyType == typeof(byte[]))
+                {
+                    if (string.IsNullOrEmpty(oldValue.ToString()))
+                    {
+                        oldValue = new byte[] { 0 };
+                    }
+                    if (string.IsNullOrEmpty(currentValue.ToString()))
+                    {
+                        currentValue = new byte[] { 0 };
+                    }
+
+                    if (((byte[])oldValue).Length != ((byte[])currentValue).Length)
+                    {
+                        fields.Add(prop.Name);
+                    }
+
+                }
+                else if (!currentValue.Equals(oldValue))
+                {
+                    #region Comment
+                    /*
+                     * Here if our oldEntity and currentEntity values are not equal then we have to save in our IList<string> as well
+                     */
+                    #endregion
+                    fields.Add(prop.Name);
+                }
+            }
+            return fields;
 
         }
 
