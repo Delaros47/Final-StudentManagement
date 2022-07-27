@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using Business.General;
+using DevExpress.XtraEditors;
 using StudentManagementUI.Forms.BaseForms;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace StudentManagementUI.Forms.SchoolForms
         public SchoolListForm()
         {
             InitializeComponent();
+            SchoolBll bll = new SchoolBll();
+            grid.DataSource = bll.List(null);
         }
     }
 }
