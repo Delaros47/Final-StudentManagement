@@ -2,6 +2,7 @@
 using Model.Entities.Base;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,11 @@ namespace Model.DTO
     /*
      * SchoolS and S means Single mostly when we want to get a single entity for example School entity mostly we will be using for our edit forms whenever we need update for a single entity
      * SchoolL is L stand for Listing so if we want all our DTO as listed we will be using SchoolL and it will be mostly using for our ListForms for GridViews
+     * [NotMapped] Whenever it creates our database that it will be added exra more columsn in School table such as CityName,DistrictName and [NotMapped] and Discriminator and so on in order to prevent that we use [NotMapped] attribute on our table
      */
     #endregion
 
+    [NotMapped]
     public class SchoolS:School
     {
         public string CityName { get; set; }
