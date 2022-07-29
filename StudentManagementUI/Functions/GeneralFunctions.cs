@@ -1,4 +1,5 @@
 ﻿using Common.Message;
+using DevExpress.XtraBars;
 using DevExpress.XtraGrid.Views.Grid;
 using System;
 using System.Collections.Generic;
@@ -52,6 +53,13 @@ namespace StudentManagementUI.Functions
                 Messages.NotSelectedRowId();
             }
             return default(T);
+        }
+
+
+        public static void ButtonEnabledState<T>(BarButtonItem btnNew, BarButtonItem btnSave, BarButtonItem btnUndo, BarButtonItem btnDelete,T oldEntity, T currentEntity)
+        {
+             
+
         }
 
 

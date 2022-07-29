@@ -26,6 +26,7 @@ namespace StudentManagementUI.Forms.BaseForms
          * MyDataLayoutControl DataLayoutControl; Here in order to use events on EditForms we have send dataLayoutControl to BaseEditForm since all controls are inside dataLayoutControl
          * IBaseBll Bll; here we will make update,delete and insert
          * Here we have BaseEntity OldEntity; and BaseEntity CurrentEntity; on our EditForms if we try to update an entity first on EditForm first it will get our OldEntity in our EditForms then if we try to click the save then it will save current entity into CurrentEntity then it will compare both of them if there are any changes then it will save and it returns id into ListForm and it will be focused on its Row 
+         * IsLoaded is that whenever we open our EditForms that if we open and loads the Form is true if not then it is false
          */
         #endregion
         protected internal ProccessType ProccessType;
@@ -36,6 +37,7 @@ namespace StudentManagementUI.Forms.BaseForms
         protected IBaseBll Bll;
         protected BaseEntity OldEntity;
         protected BaseEntity CurrentEntity;
+        protected bool IsLoaded;
 
         public BaseEditForm()
         {
@@ -131,6 +133,27 @@ namespace StudentManagementUI.Forms.BaseForms
          */
         #endregion
         protected virtual void CreateUpdatedEntity()  {   }
+
+        #region Comment
+        /*
+         * Here we have created ButtonsEnableState method so it simply will enables or disables our buttons in our EditForms when we make changes on our EditForms
+         * Here if it is not IsLoaded means that if still we didn't open our EditForms or loaded then return nothing if it is IsLoaded then we create some functions that it will enable or disables our Buttons in EditForms
+         */
+        #endregion
+        protected internal virtual void ButtonsEnableState() 
+        {
+            if (!IsLoaded)
+            {
+                return;
+            }
+            else
+            {
+
+            }
+
+
+        }
+
 
     }
 }
