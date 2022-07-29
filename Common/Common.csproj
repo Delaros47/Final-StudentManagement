@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\FormType.cs" />
+    <Compile Include="Enums\ProccessType.cs" />
     <Compile Include="Functions\EnumFunctions.cs" />
     <Compile Include="Message\Messages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

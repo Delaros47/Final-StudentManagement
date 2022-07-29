@@ -55,5 +55,15 @@ namespace Common.Message
            return  YesSelectedYesNo($"Selected {formName} will be deleted. Do you confirm?", "Delete confirmation");
         }
 
+        public static void WarningMessage(string message)
+        {
+            XtraMessageBox.Show(message, "Warning.", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static void NotSelectedRowId()
+        {
+            WarningMessage("Please select the proper Row on GridView");
+        }
+
     }
 }

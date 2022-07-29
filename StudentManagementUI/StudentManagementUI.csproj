@@ -92,10 +92,15 @@
     <Compile Include="Forms\SchoolForms\SchoolListForm.Designer.cs">
       <DependentUpon>SchoolListForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Functions\FilterFunctions.cs" />
+    <Compile Include="Functions\GeneralFunctions.cs" />
     <Compile Include="Interfaces\IStatusBarDescription.cs" />
     <Compile Include="Interfaces\IStatusBarShortcut.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Show\Interfaces\IBaseFormShow.cs" />
+    <Compile Include="Show\ShowEditForms.cs" />
+    <Compile Include="Show\ShowListForms.cs" />
     <Compile Include="UserControls\Controls\MyButtonEdit.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -365,6 +370,10 @@
     <ProjectReference Include="..\Business\Business.csproj">
       <Project>{243F4762-FFE1-468F-98E6-263412F0D971}</Project>
       <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{B00E77E1-7F02-4329-9A19-91DAB269AC7A}</Project>
+      <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{759F64E2-0B05-4FB7-9180-46A73F92F6F6}</Project>
