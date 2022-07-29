@@ -45,5 +45,45 @@ namespace StudentManagementUI.Forms.SchoolForms
         {
             OldEntity = ProccessType == ProccessType.EntityInsert ? new SchoolS() : ((SchoolBll)Bll).Single(FilterFunctions.Filter<School>(Id));
         }
+        #region Comment
+        /*
+         * Here when we open our EditForms it sets OldEntity then since it is single entity we cast it into SchoolS cause we need id,privatecode,SchoolName ToogleSwitch,State and so on we have to use our SchoolS not School because School entity doesn't have CityName and DistrictName
+         */
+        #endregion
+        protected override void BindEntityToControls()
+        {
+            var entity = (SchoolS)OldEntity;
+            txtPrivateCode.Text = entity.PrivateCode;
+            txtSchoolName.Text = entity.SchoolName;
+            btnCityName.Id = entity.CityId;
+            btnCityName.Text = entity.CityName;
+            btnDistrictName.Id = entity.DistrictId;
+            btnDistrictName.Text = entity.DistrictName;
+            txtDescription.Text = entity.Description;
+            tglState.IsOn = entity.State;
+        }
+
+        #region Comment
+        /*
+         * Here when we open our EditForms it sets OldEntity then since it is single entity we cast it into SchoolS cause we need id,privatecode,SchoolName ToogleSwitch,State and so on we have to use our SchoolS not School because School entity doesn't have CityName and DistrictName
+         */
+        #endregion
+        protected override void CreateUpdatedEntity()
+        {
+            CurrentEntity = new School
+            {
+                Id = Id,
+                PrivateCode = txtPrivateCode.Text,
+                SchoolName = txtSchoolName.Text,
+                CityId = Convert.ToInt64(btnCityName.Id),
+                DistrictId = Convert.ToInt64(btnDistrictName.Id),
+                State = tglState.IsOn,
+                Description = txtDescription.Text
+            };
+
+
+
+        }
+
     }
 }

@@ -118,10 +118,19 @@ namespace StudentManagementUI.Forms.BaseForms
         {
 
         }
+        #region Comment
+        /*
+         * Here we have created method call BindEntityToControl so it will empty here we will override in BaseEditForms so it will go get our OldEntity according to its Id then we will fill our textbox,ButtonEdit and ToggleSwitch there
+         */
+        #endregion
+        protected virtual void BindEntityToControls() {   }
 
-        protected virtual void BindEntityToControls()
-        {
+        #region Comment
+        /*
+         * Here we have created CreateUpdatedEntity and inside it we will put our CurrentEntity in EditForms
+         */
+        #endregion
+        protected virtual void CreateUpdatedEntity()  {   }
 
-        }
     }
 }

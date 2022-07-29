@@ -55,5 +55,6 @@ namespace StudentManagementUI.Forms.SchoolForms
             Table.GridControl.DataSource = ((SchoolBll)Bll).List(FilterFunctions.Filter<School>(ShowActiveList));
         }
 
+   
     }
 }

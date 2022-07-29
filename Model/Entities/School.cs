@@ -22,8 +22,8 @@ namespace Model.Entities
         public override string PrivateCode { get; set; }
         [Required, StringLength(75)]
         public string SchoolName { get; set; }
-        public int CityId { get; set; }
-        public int DistrictId { get; set; }
+        public long CityId { get; set; }
+        public long DistrictId { get; set; }
         [StringLength(500)]
         public string Description { get; set; }
 

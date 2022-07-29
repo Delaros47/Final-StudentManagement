@@ -74,8 +74,8 @@ namespace StudentManagementUI.Forms.BaseForms
             }
 
             //Table Events
-            Table.DoubleClick += Table_DoubleClick;
-            Table.KeyDown += Table_KeyDown;
+            //Table.DoubleClick += Table_DoubleClick;
+            //Table.KeyDown += Table_KeyDown;
 
             //Form Events
 

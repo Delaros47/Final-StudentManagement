@@ -16,7 +16,6 @@ namespace Model.DTO
      * [NotMapped] Whenever it creates our database that it will be added exra more columsn in School table such as CityName,DistrictName and [NotMapped] and Discriminator and so on in order to prevent that we use [NotMapped] attribute on our table
      */
     #endregion
-
     [NotMapped]
     public class SchoolS:School
     {
@@ -30,7 +29,6 @@ namespace Model.DTO
      * SchoolL is for Listing our entities in GridControl but when we list that we need Id,PrivateCode which they are inside the BaseEntity inheritted from it and also we defined SchoolName,CityName,DistrictName,Description by the way we don't need State on our GridControl
      */
     #endregion
-
     public class SchoolL : BaseEntity
     {
         public string SchoolName { get; set; }

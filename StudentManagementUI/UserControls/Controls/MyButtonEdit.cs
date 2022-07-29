@@ -30,10 +30,10 @@ namespace StudentManagementUI.UserControls.Controls
         public string StatusBarDescription { get; set; }
 
 
-        private int? _id;
+        private long? _id;
         //Browsable(false) means that it will not be shown on our Button Edit Properties in order to prevent a programmer to enter a value on it
         [Browsable(false)]
-        public int? Id
+        public long? Id
         {
             get { return _id; }
             set
@@ -55,14 +55,14 @@ namespace StudentManagementUI.UserControls.Controls
     //We want to get old value and new value on ButtonEdit whenever we change the value of it and whenever we use EventArgs that means in method e.NewValue and e.OldValue we can reach them out
     public class IdChangedEventArgs : EventArgs
     {
-        public IdChangedEventArgs(int? oldValue, int? newValue)
+        public IdChangedEventArgs(long? oldValue, long? newValue)
         {
             OldValue = oldValue;
             NewValue = newValue;
 
         }
 
-        public int? NewValue { get; }
-        public int? OldValue { get; }
+        public long? NewValue { get; }
+        public long? OldValue { get; }
     }
 }

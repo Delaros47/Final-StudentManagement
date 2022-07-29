@@ -37,7 +37,7 @@
             DevExpress.XtraLayout.RowDefinition rowDefinition4 = new DevExpress.XtraLayout.RowDefinition();
             DevExpress.XtraLayout.RowDefinition rowDefinition5 = new DevExpress.XtraLayout.RowDefinition();
             this.myDataLayoutControl = new StudentManagementUI.UserControls.Controls.MyDataLayoutControl();
-            this.btnDescription = new StudentManagementUI.UserControls.Controls.MyMemoEdit();
+            this.txtDescription = new StudentManagementUI.UserControls.Controls.MyMemoEdit();
             this.btnDistrictName = new StudentManagementUI.UserControls.Controls.MyButtonEdit();
             this.btnCityName = new StudentManagementUI.UserControls.Controls.MyButtonEdit();
             this.txtSchoolName = new StudentManagementUI.UserControls.Controls.MyTextEdit();
@@ -53,7 +53,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.myDataLayoutControl)).BeginInit();
             this.myDataLayoutControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDescription.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDistrictName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCityName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSchoolName.Properties)).BeginInit();
@@ -83,7 +83,7 @@
             // 
             // myDataLayoutControl
             // 
-            this.myDataLayoutControl.Controls.Add(this.btnDescription);
+            this.myDataLayoutControl.Controls.Add(this.txtDescription);
             this.myDataLayoutControl.Controls.Add(this.btnDistrictName);
             this.myDataLayoutControl.Controls.Add(this.btnCityName);
             this.myDataLayoutControl.Controls.Add(this.txtSchoolName);
@@ -98,19 +98,19 @@
             this.myDataLayoutControl.TabIndex = 2;
             this.myDataLayoutControl.Text = "myDataLayoutControl1";
             // 
-            // btnDescription
+            // txtDescription
             // 
-            this.btnDescription.EnterMoveNextControl = true;
-            this.btnDescription.Location = new System.Drawing.Point(85, 108);
-            this.btnDescription.MenuManager = this.ribbonControl;
-            this.btnDescription.Name = "btnDescription";
-            this.btnDescription.Properties.AppearanceFocused.BackColor = System.Drawing.Color.LightCyan;
-            this.btnDescription.Properties.AppearanceFocused.Options.UseBackColor = true;
-            this.btnDescription.Properties.MaxLength = 500;
-            this.btnDescription.Size = new System.Drawing.Size(276, 66);
-            this.btnDescription.StatusBarDescription = "Enter the Description.";
-            this.btnDescription.StyleController = this.myDataLayoutControl;
-            this.btnDescription.TabIndex = 9;
+            this.txtDescription.EnterMoveNextControl = true;
+            this.txtDescription.Location = new System.Drawing.Point(85, 108);
+            this.txtDescription.MenuManager = this.ribbonControl;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Properties.AppearanceFocused.BackColor = System.Drawing.Color.LightCyan;
+            this.txtDescription.Properties.AppearanceFocused.Options.UseBackColor = true;
+            this.txtDescription.Properties.MaxLength = 500;
+            this.txtDescription.Size = new System.Drawing.Size(276, 66);
+            this.txtDescription.StatusBarDescription = "Enter the Description.";
+            this.txtDescription.StyleController = this.myDataLayoutControl;
+            this.txtDescription.TabIndex = 9;
             // 
             // btnDistrictName
             // 
@@ -315,7 +315,7 @@
             // 
             this.layoutControlItem6.AppearanceItemCaption.ForeColor = System.Drawing.Color.Maroon;
             this.layoutControlItem6.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem6.Control = this.btnDescription;
+            this.layoutControlItem6.Control = this.txtDescription;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 96);
             this.layoutControlItem6.Name = "layoutControlItem6";
             this.layoutControlItem6.OptionsTableLayoutItem.ColumnSpan = 3;
@@ -340,7 +340,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.myDataLayoutControl)).EndInit();
             this.myDataLayoutControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnDescription.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescription.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDistrictName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCityName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSchoolName.Properties)).EndInit();
@@ -362,7 +362,7 @@
 
         private UserControls.Controls.MyDataLayoutControl myDataLayoutControl;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private UserControls.Controls.MyMemoEdit btnDescription;
+        private UserControls.Controls.MyMemoEdit txtDescription;
         private UserControls.Controls.MyButtonEdit btnDistrictName;
         private UserControls.Controls.MyButtonEdit btnCityName;
         private UserControls.Controls.MyTextEdit txtSchoolName;
