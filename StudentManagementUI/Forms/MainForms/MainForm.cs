@@ -1,7 +1,9 @@
-﻿using DevExpress.XtraBars;
+﻿using Common.Enums;
+using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraEditors;
 using StudentManagementUI.Forms.SchoolForms;
+using StudentManagementUI.Show;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,9 +49,7 @@ namespace StudentManagementUI.Forms.MainForms
         {
             if (e.Item==btnSchools)
             {
-                SchoolListForm schoolListForm = new SchoolListForm();
-                schoolListForm.MdiParent = ActiveForm;
-                schoolListForm.Show();
+                ShowListForms<SchoolListForm>.ShowListForm(FormType.School);
             }
         }
     }

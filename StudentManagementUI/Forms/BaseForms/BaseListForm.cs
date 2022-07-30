@@ -43,12 +43,12 @@ namespace StudentManagementUI.Forms.BaseForms
         protected internal BaseEntity SelectedEntity;
         protected internal IBaseBll Bll;
         protected ControlNavigator Navigator;
-        
+
 
         public BaseListForm()
         {
             InitializeComponent();
-            EventsLoad();
+           
         }
 
         #region Comment
@@ -60,6 +60,8 @@ namespace StudentManagementUI.Forms.BaseForms
         #endregion
         private void EventsLoad()
         {
+
+
             //Button Events
             foreach (var item in ribbonControl.Items)
             {
@@ -73,14 +75,16 @@ namespace StudentManagementUI.Forms.BaseForms
                 }
             }
 
+
             //Table Events
-            //Table.DoubleClick += Table_DoubleClick;
-            //Table.KeyDown += Table_KeyDown;
+            Table.DoubleClick += Table_DoubleClick;
+            Table.KeyDown += Table_KeyDown;
 
             //Form Events
 
 
         }
+
 
         #region Comment
         /*
@@ -104,7 +108,7 @@ namespace StudentManagementUI.Forms.BaseForms
          * Here we will be set Table,FormType,and other here since it is virtual so it requires to be inheritted from other list form and set there here it will be empty we can access all others because they are protected
          */
         #endregion
-        protected virtual void FillTheVariables() {   }
+        protected virtual void FillTheVariables() { }
 
 
 
@@ -126,7 +130,7 @@ namespace StudentManagementUI.Forms.BaseForms
         #endregion
         private void EntityDelete()
         {
-            
+
         }
 
 
@@ -160,7 +164,7 @@ namespace StudentManagementUI.Forms.BaseForms
          * Here we made our EntityRefresh method as virtual cause we will not anything here we will override on other ListForms
          */
         #endregion
-        protected virtual void EntityRefresh() {   }
+        protected virtual void EntityRefresh() { }
 
 
         private void EntityFilter()
@@ -347,6 +351,6 @@ namespace StudentManagementUI.Forms.BaseForms
             Cursor.Current = DefaultCursor;
         }
 
-        
+
     }
 }

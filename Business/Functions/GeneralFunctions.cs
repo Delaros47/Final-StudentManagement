@@ -42,7 +42,7 @@ namespace Business.Functions
                     {
                         oldValue = new byte[] { 0 };
                     }
-                    if (string.IsNullOrEmpty(currentValue.ToString()))
+                    if (string.IsNullOrEmpty(currentEntity.ToString()))
                     {
                         currentValue = new byte[] { 0 };
                     }

@@ -81,7 +81,7 @@ namespace StudentManagementUI.Forms.SchoolForms
                 Description = txtDescription.Text
             };
 
-
+            ButtonsEnableState();
 
         }
 

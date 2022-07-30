@@ -3,6 +3,7 @@ using Common.Enums;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using Model.Entities.Base;
+using StudentManagementUI.Functions;
 using StudentManagementUI.UserControls.Controls;
 using System;
 using System.Collections.Generic;
@@ -62,6 +63,16 @@ namespace StudentManagementUI.Forms.BaseForms
                         break;
                 }
             }
+
+            //Forms Events
+            Load += BaseEditForm_Load;
+        }
+
+        private void BaseEditForm_Load(object sender, EventArgs e)
+        {
+            IsLoaded = true;
+            CreateUpdatedEntity();
+            Id = ProccessType.CreateId(OldEntity);
         }
         #region Comment
         /*
@@ -148,7 +159,7 @@ namespace StudentManagementUI.Forms.BaseForms
             }
             else
             {
-
+                GeneralFunctions.ButtonEnabledState<BaseEntity>(btnNew,btnSave,btnUndo,btnDelete,OldEntity,CurrentEntity);
             }
 
 
