@@ -1,4 +1,5 @@
 ﻿using Business.Base;
+using Business.Base.Interfaces;
 using Common.Enums;
 using Data.Contexts;
 using Model.DTO;
@@ -21,7 +22,7 @@ namespace Business.General
      */
     #endregion
 
-    public class SchoolBll : BaseBll<School, StudentManagementContext>
+    public class SchoolBll : BaseBll<School, StudentManagementContext>,IBaseGeneralBll
     {
         public SchoolBll()
         {
@@ -97,6 +98,11 @@ namespace Business.General
         public bool Delete(BaseEntity entity)
         {
             return BaseDelete(entity, FormType.School);
+        }
+
+        public string GivePrivateCode()
+        {
+            throw new NotImplementedException();
         }
     }
 }

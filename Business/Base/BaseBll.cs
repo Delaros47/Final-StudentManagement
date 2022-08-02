@@ -131,6 +131,17 @@ namespace Business.Base
 
         #region Comment
         /*
+         * Here we have created method BaseGeneratePrivateCode so it simply asks from FormType then one filter because it will take T type and then returns string because we will return string as PrivateCode and lastly we have where=null filter for example in District entity each city will have districts but each District's Private Code will start from District-00001 like this Mardin,or Antalya all their Districts will start like that that's why we have where=null filter we will generate PrivateCode according to their City filter
+         */
+        #endregion
+        protected string BaseGeneratePrivateCode(FormType formType,Expression<Func<T,string>> filter,Expression<Func<T,bool>> where=null)
+        {
+            GeneralFunctions.CreateUnitOfWork<T, TContext>(ref _uow);
+            _uow.Rep.GeneratePrivateCode();
+        }
+
+        #region Comment
+        /*
          * Here will dispose our _ctrl and _uow will not dispose our Bll if we do that it will give error in runtime
          * Here _ctrl?.Dispose(); if _ctrl is not null then Dispose it
          */

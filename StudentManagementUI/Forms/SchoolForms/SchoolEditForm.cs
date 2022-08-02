@@ -39,11 +39,16 @@ namespace StudentManagementUI.Forms.SchoolForms
         /*
          * Here we overrode our MyEditLoad from BaseEditForm here if our ProccessType is EntityInsert then it will set our OldEntity new DTO new SchoolS(); since we will do all our insert,update,delete on DTO that's why it means that we definity know that we will insert a new entity if ProccessType is not EntityInsert if it is EntityUpdate then it will go to Bll find our Entity in our Database then it will set on Database then we could compare OldEntity and CurrentEntity
          * FilterFunctions.Filter<School>(Id) Here is our Function
+         * if (ProccessType != ProccessType.EntityInsert) return; If our ProccessType is EntityUpdate then returns because we don't need to create PrivateCode if it is EntityInsert then we create PrivateCode and focus on txtSchool textbox
          */
         #endregion
         protected internal override void MyEditLoad()
         {
             OldEntity = ProccessType == ProccessType.EntityInsert ? new SchoolS() : ((SchoolBll)Bll).Single(FilterFunctions.Filter<School>(Id));
+            BindEntityToControls();
+            if (ProccessType != ProccessType.EntityInsert) return;
+            txtPrivateCode.Text = ((SchoolBll)Bll).GivePrivateCode();
+            txtSchoolName.Focus();
         }
         #region Comment
         /*

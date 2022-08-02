@@ -1,5 +1,6 @@
 ﻿using Business.Base.Interfaces;
 using Common.Enums;
+using Common.Message;
 using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using Model.Entities.Base;
@@ -39,6 +40,7 @@ namespace StudentManagementUI.Forms.BaseForms
         protected BaseEntity OldEntity;
         protected BaseEntity CurrentEntity;
         protected bool IsLoaded;
+        protected bool CloseFormAfterInsert = true;
 
         public BaseEditForm()
         {
@@ -82,46 +84,118 @@ namespace StudentManagementUI.Forms.BaseForms
         private void Buttons_ItemClick(object sender, ItemClickEventArgs e)
         {
 
-            if (e.Item==btnNew)
+            if (e.Item == btnNew)
             {
                 ProccessType = ProccessType.EntityInsert;
                 MyEditLoad();
             }
-            else if (e.Item==btnSave)
+            else if (e.Item == btnSave)
             {
                 EntitySave(false);
             }
-            else if (e.Item==btnUndo)
+            else if (e.Item == btnUndo)
             {
                 EntityUndo();
             }
-            else if (e.Item==btnDelete)
+            else if (e.Item == btnDelete)
             {
                 EntityDelete();
             }
-            else if (e.Item==btnExit)
+            else if (e.Item == btnExit)
             {
                 Close();
             }
-            
 
-            
+
+
         }
 
         private void EntityDelete()
         {
-            
+
         }
 
         private void EntityUndo()
         {
-            
+
+        }
+        #region Comment
+        /*
+         * Here we have created EntitySave method and it takes boolen parameter if it is true then EditFormCloseMessage will be shown to us if not then SaveMessage will be shown to us
+         */
+        #endregion
+        private bool EntitySave(bool editFormClosed)
+        {
+            bool SaveProccess()
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                switch (ProccessType)
+                {
+                    case ProccessType.EntityInsert:
+                        if (EntityInsert())
+                            return AfterInsertProccess();
+                        break;
+                    case ProccessType.EntityUpdate:
+                        if (EntityUpdate())
+                            AfterInsertProccess();
+                        break;
+                }
+
+                bool AfterInsertProccess()
+                {
+                    OldEntity = CurrentEntity;
+                    WillRefresh = true;
+                    ButtonsEnableState();
+                    if (CloseFormAfterInsert)
+                    {
+                        Close();
+                    }
+                    else
+                    {
+                        ProccessType = ProccessType == ProccessType.EntityInsert ? ProccessType.EntityUpdate : ProccessType;
+
+                    }
+                    return true;
+                }
+
+
+                return false;
+
+            }
+            var result = editFormClosed ? Messages.EditFormClosedMessage() : Messages.SaveMessage();
+
+            switch (result)
+            {
+                case DialogResult.Yes:
+                    return SaveProccess();
+
+                case DialogResult.No:
+                    if (editFormClosed)
+                        btnSave.Enabled = false;
+                    return true;
+
+                case DialogResult.Cancel:
+                    return true;
+            }
+            return false;
         }
 
-        private void EntitySave(bool v)
+        protected virtual bool EntityUpdate()
         {
-            
+            return ((IBaseGeneralBll)Bll).Update(OldEntity,CurrentEntity);
+
         }
+        #region Comment
+        /*
+         * Since our SchoolBll impelemented from Bll and SchoolBll impelemented from IBaseGeneralBll so we could cast IBaseGeneralBll
+         */
+        #endregion
+        protected virtual bool EntityInsert()
+        {
+           return ((IBaseGeneralBll)Bll).Insert(CurrentEntity);
+        }
+
+
         #region Comment
         /*
          * Here is our virtual method simply will be override in other 
@@ -136,14 +210,14 @@ namespace StudentManagementUI.Forms.BaseForms
          * Here we have created method call BindEntityToControl so it will empty here we will override in BaseEditForms so it will go get our OldEntity according to its Id then we will fill our textbox,ButtonEdit and ToggleSwitch there
          */
         #endregion
-        protected virtual void BindEntityToControls() {   }
+        protected virtual void BindEntityToControls() { }
 
         #region Comment
         /*
          * Here we have created CreateUpdatedEntity and inside it we will put our CurrentEntity in EditForms
          */
         #endregion
-        protected virtual void CreateUpdatedEntity()  {   }
+        protected virtual void CreateUpdatedEntity() { }
 
         #region Comment
         /*
@@ -151,7 +225,7 @@ namespace StudentManagementUI.Forms.BaseForms
          * Here if it is not IsLoaded means that if still we didn't open our EditForms or loaded then return nothing if it is IsLoaded then we create some functions that it will enable or disables our Buttons in EditForms
          */
         #endregion
-        protected internal virtual void ButtonsEnableState() 
+        protected internal virtual void ButtonsEnableState()
         {
             if (!IsLoaded)
             {
@@ -159,7 +233,7 @@ namespace StudentManagementUI.Forms.BaseForms
             }
             else
             {
-                GeneralFunctions.ButtonEnabledState<BaseEntity>(btnNew,btnSave,btnUndo,btnDelete,OldEntity,CurrentEntity);
+                GeneralFunctions.ButtonEnabledState<BaseEntity>(btnNew, btnSave, btnUndo, btnDelete, OldEntity, CurrentEntity);
             }
 
 

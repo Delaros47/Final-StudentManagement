@@ -1,4 +1,6 @@
-﻿using DataAccess.Interfaces;
+﻿using Common.Enums;
+using Common.Functions;
+using DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -156,6 +158,35 @@ namespace DataAccess.Base
             return filter == null ? _dbSet.Select(selector) : _dbSet.Where(filter).Select(selector);
         }
 
+        public string GeneratePrivateCode(FormType formType, Expression<Func<T, string>> filter, Expression<Func<T, bool>> where = null)
+        {
+            string PrivateCode()
+            {
+                string privateCode = null;
+                var privateCodeArrays = formType.ToName().Split(' ');
+
+                for (int i = 0; i < privateCodeArrays.Length; i++)
+                {
+                    privateCode += privateCodeArrays[i];
+                    if (i+1<privateCodeArrays.Length-1)
+                        privateCode += " ";
+                }
+                return privateCode += "-00001";
+            }
+
+            string GivePrivateCode(string privateCode)
+            {
+                var digitValues = "";
+                foreach (var character in privateCode)
+                {
+                    if (char.IsDigit(character))
+                        digitValues += character;
+                    else
+                        digitValues = "";
+                }
+            }
+        }
+
 
         private bool _disposedValue;
         protected virtual void Dispose(bool disposing)
@@ -181,6 +212,6 @@ namespace DataAccess.Base
             GC.SuppressFinalize(this);
         }
 
-        
+       
     }
 }
